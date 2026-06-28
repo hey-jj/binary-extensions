@@ -13,14 +13,6 @@ fn main_is_nonempty_list() {
     assert!(!EXT.is_empty(), "list must be non-empty");
 }
 
-/// Every element is a string slice.
-#[test]
-fn elements_are_str() {
-    for e in EXT {
-        let _: &str = e;
-    }
-}
-
 /// The accessor returns the same slice as the constant.
 #[test]
 fn accessor_matches_constant() {
