@@ -3,7 +3,7 @@
 //! This crate ships a single immutable list of file extensions that denote
 //! binary files (archives, images, audio, video, office documents,
 //! executables, fonts, RAW camera formats, and similar). It carries no logic.
-//! Read [`BINARY_EXTENSIONS`] or call [`binary_extensions`].
+//! Read [`BINARY_EXTENSIONS`] or call [`all`].
 //!
 //! Use it to classify a path as binary by its extension. Strip any leading dot
 //! from the path extension first, then check membership. The list stores bare
@@ -43,13 +43,10 @@ pub use data::BINARY_EXTENSIONS;
 /// # Example
 ///
 /// ```
-/// assert_eq!(
-///     binary_extensions::binary_extensions(),
-///     binary_extensions::BINARY_EXTENSIONS,
-/// );
-/// assert!(binary_extensions::binary_extensions().contains(&"zip"));
+/// assert_eq!(binary_extensions::all(), binary_extensions::BINARY_EXTENSIONS);
+/// assert!(binary_extensions::all().contains(&"zip"));
 /// ```
 #[must_use]
-pub fn binary_extensions() -> &'static [&'static str] {
+pub fn all() -> &'static [&'static str] {
     BINARY_EXTENSIONS
 }

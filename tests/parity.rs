@@ -24,5 +24,5 @@ fn elements_are_str() {
 /// The accessor returns the same slice as the constant.
 #[test]
 fn accessor_matches_constant() {
-    assert_eq!(binary_extensions::binary_extensions(), EXT);
+    assert_eq!(binary_extensions::all(), EXT);
 }

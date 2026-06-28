@@ -23,7 +23,7 @@ assert!(BINARY_EXTENSIONS.contains(&"png"));
 assert!(!BINARY_EXTENSIONS.contains(&"txt"));
 ```
 
-`binary_extensions()` returns the same slice if you prefer a function call.
+`binary_extensions::all()` returns the same slice if you prefer a function call.
 
 Entries are bare tokens without a leading dot, for example `"png"`, never
 `".png"`. Strip the dot from a path extension before checking membership. Every
