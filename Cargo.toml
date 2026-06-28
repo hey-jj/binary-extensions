@@ -2,9 +2,12 @@
 name = "binary-extensions"
 version = "0.1.0"
 edition = "2021"
+rust-version = "1.56"
 description = "curated list of binary file extensions for text/binary classification"
 license = "MIT"
 repository = "https://github.com/hey-jj/binary-extensions"
 readme = "README.md"
+keywords = ["binary", "extension", "file", "mime", "no-std"]
+categories = ["filesystem", "no-std"]
 
 [dependencies]
