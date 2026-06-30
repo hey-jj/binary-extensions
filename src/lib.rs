@@ -1,13 +1,19 @@
 //! Curated list of binary file extensions.
 //!
-//! This crate ships a single immutable list of file extensions that denote
-//! binary files (archives, images, audio, video, office documents,
-//! executables, fonts, RAW camera formats, and similar). It carries no logic.
-//! Read [`BINARY_EXTENSIONS`] or call [`all`].
+//! This crate ships a single immutable list of file extensions commonly
+//! associated with binary files (archives, images, audio, video, office
+//! documents, executables, fonts, RAW camera formats, and similar). It carries
+//! no logic. Read [`BINARY_EXTENSIONS`] or call [`all`].
 //!
-//! Use it to classify a path as binary by its extension. Strip any leading dot
-//! from the path extension first, then check membership. The list stores bare
-//! tokens such as `"png"`, never `".png"`.
+//! Classification by extension is a heuristic, not a guarantee. A few entries
+//! (for example `rtf`, `m3u`, `slk`) are text-encoded formats kept for
+//! compatibility, so membership does not prove a file holds binary bytes.
+//!
+//! Use it to classify a path by its extension. The list stores bare lowercase
+//! tokens such as `"png"`, never `".png"`. Strip any leading dot and lowercase
+//! the extension before checking membership, otherwise names like `IMAGE.PNG`
+//! are missed. The one exception is `"DS_Store"`, the macOS metadata file, whose
+//! casing is preserved and matched as is.
 //!
 //! # Data shape
 //!
