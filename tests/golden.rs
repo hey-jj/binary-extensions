@@ -9,7 +9,7 @@ use std::path::PathBuf;
 /// Read the fixture file as a single string.
 fn read_fixture() -> String {
     let path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tests/binary-extensions.json");
-    std::fs::read_to_string(&path).unwrap_or_else(|e| panic!("read {}: {e}", path.display()))
+    std::fs::read_to_string(&path).unwrap_or_else(|e| panic!("read {}: {}", path.display(), e))
 }
 
 /// Parse the fixture into ordered string tokens borrowed from `raw`.
@@ -29,7 +29,7 @@ fn parse_fixture(raw: &str) -> Vec<&str> {
             token
                 .strip_prefix('"')
                 .and_then(|t| t.strip_suffix('"'))
-                .unwrap_or_else(|| panic!("fixture element is not a quoted string: {token:?}"))
+                .unwrap_or_else(|| panic!("fixture element is not a quoted string: {:?}", token))
         })
         .collect()
 }
@@ -44,7 +44,10 @@ fn golden_matches_fixture_exactly() {
     assert_eq!(ours.len(), fixture.len(), "length mismatch vs fixture");
 
     for (i, (a, b)) in ours.iter().zip(fixture.iter()).enumerate() {
-        assert_eq!(a, b, "mismatch at index {i}: ours={a:?} fixture={b:?}");
+        assert_eq!(
+            a, b,
+            "mismatch at index {}: ours={:?} fixture={:?}",
+            i, a, b
+        );
     }
-    assert_eq!(ours, fixture, "full ordered list differs from fixture");
 }

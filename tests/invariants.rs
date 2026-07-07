@@ -26,11 +26,13 @@ fn no_empty_no_leading_dot_no_whitespace() {
         assert!(!e.is_empty(), "empty extension entry");
         assert!(
             !e.starts_with('.'),
-            "extension must not have leading dot: {e:?}"
+            "extension must not have leading dot: {:?}",
+            e
         );
         assert!(
             !e.contains(char::is_whitespace),
-            "no whitespace allowed: {e:?}"
+            "no whitespace allowed: {:?}",
+            e
         );
     }
 }
@@ -39,7 +41,7 @@ fn no_empty_no_leading_dot_no_whitespace() {
 #[test]
 fn all_ascii() {
     for e in EXT {
-        assert!(e.is_ascii(), "non-ASCII entry: {e:?}");
+        assert!(e.is_ascii(), "non-ASCII entry: {:?}", e);
     }
 }
 
@@ -53,7 +55,8 @@ fn casing_preserved_ds_store_is_the_only_uppercase() {
     assert_eq!(
         upper,
         vec![&"DS_Store"],
-        "casing drift: exactly one uppercase entry (DS_Store) expected, got {upper:?}"
+        "casing drift: exactly one uppercase entry (DS_Store) expected, got {:?}",
+        upper
     );
 }
 
@@ -68,7 +71,8 @@ fn ds_store_value_index_and_underscore() {
     assert_eq!(
         with_underscore,
         vec![&"DS_Store"],
-        "exactly one entry (DS_Store) should contain an underscore, got {with_underscore:?}"
+        "exactly one entry (DS_Store) should contain an underscore, got {:?}",
+        with_underscore
     );
 }
 
@@ -78,7 +82,7 @@ fn known_members_present() {
     for ext in [
         "3dm", "png", "jpg", "jpeg", "pdf", "zip", "exe", "DS_Store", "zipx",
     ] {
-        assert!(EXT.contains(&ext), "expected member missing: {ext}");
+        assert!(EXT.contains(&ext), "expected member missing: {}", ext);
     }
 }
 
@@ -88,7 +92,8 @@ fn obvious_text_extensions_absent() {
     for ext in ["txt", "md", "json", "js", "ts", "html", "css", "csv"] {
         assert!(
             !EXT.contains(&ext),
-            "text extension wrongly included: {ext}"
+            "text extension wrongly included: {}",
+            ext
         );
     }
 }
